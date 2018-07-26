@@ -1,6 +1,6 @@
 <template>
 	<div class="grid-container">
-    <ag-grid-vue class="grid ag-theme-balham" :columnDefs="columnDefs" :rowData="rowData"></ag-grid-vue>
+    <ag-grid-vue class="grid ag-theme-balham-dark" :columnDefs="columnSet" :rowData="viewData"></ag-grid-vue>
   </div>
 </template>
 
@@ -9,54 +9,24 @@
 import { AgGridVue } from "ag-grid-vue";
 
 import "ag-grid/dist/styles/ag-grid.css";
-import "ag-grid/dist/styles/ag-theme-balham.css";
+import "ag-grid/dist/styles/ag-theme-balham-dark.css";
 
 export default {
-  name: "Grid",
-  data() {
-    return {
-      columnDefs: null,
-      rowData: null
-    };
+  name: "BaseGrid",
+
+  props: {
+    columnSet: {
+      type: Array,
+      required: true
+    },
+
+    viewData: {
+      required: false
+    }
   },
 
   components: {
     AgGridVue
-  },
-
-  beforeMount() {
-    this.columnDefs = [
-      { headerName: "Make", field: "make", pinned: "left" },
-      { headerName: "Model", field: "model" },
-      { headerName: "Price", field: "price" }
-    ];
-
-    this.rowData = [
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 },
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 },
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 },
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 },
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 },
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 },
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 },
-      { make: "Toyota", model: "Celica", price: 35000 },
-      { make: "Ford", model: "Mondeo", price: 32000 },
-      { make: "Porsche", model: "Boxter", price: 72000 }
-    ];
   }
 };
 </script>

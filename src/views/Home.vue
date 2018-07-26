@@ -1,16 +1,16 @@
 <template>
   <div class="home">
-    <grid></grid>
+    <watchlist></watchlist>
   </div>
 </template>
 
 <script>
-import grid from "@/components/grid";
+import watchlist from "@/components/watchlist";
 
 export default {
   name: "home",
   components: {
-    grid
+    watchlist
   }
 };
 </script>
