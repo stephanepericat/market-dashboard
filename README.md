@@ -2,4 +2,4 @@
 
 # Market Dashboard
 
-A demo market monitoring terminal built with Vue.js and Electron.
+A free, open-source market monitoring terminal built with Vue.js and Electron.

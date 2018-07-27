@@ -9,6 +9,6 @@ describe("Components > Grid > Presentational", () => {
         viewData: []
       }
     });
-    expect(wrapper.vm.$el).toBeDefined();
+    expect(wrapper.vm.$el.querySelector(".grid-container")).toBeDefined();
   });
 });
