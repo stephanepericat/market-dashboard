@@ -18,7 +18,7 @@ protocol.registerStandardSchemes(["app"], { secure: true });
 function createMainWindow() {
   const window = new BrowserWindow({
     width: 1280,
-    height: 1024
+    height: 768
   });
 
   if (isDevelopment) {
