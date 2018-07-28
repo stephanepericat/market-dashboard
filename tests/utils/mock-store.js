@@ -1,8 +1,8 @@
-import state from "@/store_modules/state";
+import mockState from "./mock-state";
 
 const mockStore = () => {
   return {
-    state,
+    state: mockState(),
     getters: {},
     actions: {},
     mutations: {}
