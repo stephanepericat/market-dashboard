@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <layout-golden class="workbook">
+    <layout-golden class="workbook" :show-popout-icon="false">
       <gl-row>
         <gl-col>
           <gl-row>
