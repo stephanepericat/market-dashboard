@@ -1,6 +1,7 @@
 <template>
   <div class="watchlist-container">
     <base-grid
+      ref="grid"
       :column-set="columns"
       :view-data="quotes"
     ></base-grid>  
