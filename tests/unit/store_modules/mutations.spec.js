@@ -12,3 +12,15 @@ describe("Store > Mutations > setQuoteData", () => {
     expect(state.quotes).toEqual(data);
   });
 });
+
+describe("Store > Mutations > setFocusedInvestment", () => {
+  it("should update the focused investment", () => {
+    const state = mockState();
+    const newFocus = "msft";
+
+    expect(state.focus).not.toEqual(newFocus);
+
+    mutations.setFocusedInvestment(state, newFocus);
+    expect(state.focus).toEqual(newFocus);
+  });
+});

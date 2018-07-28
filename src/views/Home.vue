@@ -7,25 +7,31 @@
             <gl-component title="S&P 500 Top 50">
               <watchlist
                 ref="watchlist"
+                :focus="focus"
               ></watchlist>
             </gl-component>
           </gl-row>
         </gl-col>
         <gl-col>
           <gl-row>
-            <gl-component title="Component 2">
-              COMPONENT 2
+            <gl-component title="Price Chart">
+              <price-chart
+                ref="priceChart"
+                :focus="focus"
+              ></price-chart>
             </gl-component>
           </gl-row>
           <gl-row>
-            <gl-component title="Component 3">
-              COMPONENT 3
-            </gl-component>
-          </gl-row>
-          <gl-row>
-            <gl-component title="Component 4">
-              COMPONENT 4
-            </gl-component>
+            <gl-col>
+              <gl-component title="Company Info">
+                COMPONENT 3
+              </gl-component>
+            </gl-col>
+            <gl-col>
+              <gl-component title="Related News">
+                COMPONENT 4
+              </gl-component>
+            </gl-col>
           </gl-row>
         </gl-col>
       </gl-row>
@@ -35,17 +41,27 @@
 
 <script>
 import watchlist from "@/components/watchlist";
+import priceChart from "@/components/price-chart";
 
 export default {
-  name: "home",
+  name: "HomeView",
+
   components: {
-    watchlist
+    watchlist,
+    priceChart
+  },
+
+  computed: {
+    focus() {
+      return this.$store.state.focus;
+    }
   }
 };
 </script>
 <style lang="scss">
 .home {
   height: 100%;
+  overflow: hidden;
 }
 
 .workbook {
