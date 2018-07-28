@@ -1,6 +1,11 @@
 <template>
 	<div class="grid-container">
-    <ag-grid-vue class="grid ag-theme-balham-dark" :columnDefs="columnSet" :rowData="viewData"></ag-grid-vue>
+    <ag-grid-vue
+      ref="ag"
+      class="grid ag-theme-balham-dark"
+      :columnDefs="columnSet"
+      :rowData="viewData"
+      ></ag-grid-vue>
   </div>
 </template>
 

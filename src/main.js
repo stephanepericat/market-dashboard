@@ -4,6 +4,11 @@ import router from "./router";
 import store from "./store";
 import i18n from "./i18n";
 
+import "./vendors";
+
+import vgl from "vue-golden-layout";
+Vue.use(vgl);
+
 Vue.config.productionTip = false;
 
 new Vue({
