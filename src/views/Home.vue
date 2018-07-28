@@ -4,7 +4,7 @@
       <gl-row>
         <gl-col>
           <gl-row>
-            <gl-component title="Monitoring Watchlist">
+            <gl-component title="S&P 500 Top 50">
               <watchlist></watchlist>
             </gl-component>
           </gl-row>
@@ -28,11 +28,15 @@
 
 <script>
 import watchlist from "@/components/watchlist";
+// import { remote } from "electron";
 
 export default {
   name: "home",
   components: {
     watchlist
+  },
+  mounted() {
+    // remote.getGlobal("applicationBus").$emit("watchlist.loaded");
   }
 };
 </script>

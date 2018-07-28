@@ -7,7 +7,14 @@ import {
   createProtocol,
   installVueDevtools
 } from "vue-cli-plugin-electron-builder/lib";
+// import Vue from "vue";
+
 const isDevelopment = process.env.NODE_ENV !== "production";
+
+// Event bus for Vue
+// In component, remote.getGlobal("applicationBus")
+// const bus = new Vue();
+// global.applicationBus = bus;
 
 // global reference to mainWindow (necessary to prevent window from being garbage collected)
 let mainWindow;
