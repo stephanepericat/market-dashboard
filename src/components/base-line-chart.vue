@@ -21,10 +21,16 @@ export default {
     }
   },
 
-  mounted() {
-    setTimeout(() => {
-      this.initChart();
-    }, 500);
+  watch: {
+    chartData(data) {
+      if (data && data.length && !this.lineChart) {
+        this.initChart();
+      }
+    }
+  },
+
+  created() {
+    this.lineChart = null;
   },
 
   methods: {
@@ -33,9 +39,9 @@ export default {
         rangeSelector: {
           selected: 1
         },
-        title: {
-          text: `Stock Price for ${this.focus}`
-        },
+        // title: {
+        //   text: `Stock Price for ${this.focus}`
+        // },
         series: [
           {
             name: this.focus,

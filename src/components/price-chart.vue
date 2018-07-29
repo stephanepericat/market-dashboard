@@ -10,11 +10,14 @@
 
 <script>
 import BaseLineChart from "@/components/base-line-chart";
+import ChartService from "@/services/chart";
 
 export default {
   components: {
     BaseLineChart
   },
+
+  mixins: [ChartService],
 
   props: {
     focus: {
@@ -25,17 +28,25 @@ export default {
 
   computed: {
     viewData() {
-      return [
-        [1469799000000, 104.21],
-        [1470058200000, 106.05],
-        [1470144600000, 104.48],
-        [1470231000000, 105.79],
-        [1470317400000, 105.87]
-      ];
+      return this.$store.getters.getChartData;
     }
   },
 
-  mounted() {}
+  created() {
+    this.getHistoricalData(this.focus)
+      .then(res => {
+        if (res && res.data) {
+          this.setHistoricalData(res.data);
+        }
+      })
+      .catch(e => console.error(e));
+  },
+
+  methods: {
+    setHistoricalData(rawData) {
+      this.$store.commit("setHistoricalData", rawData);
+    }
+  }
 };
 </script>
 

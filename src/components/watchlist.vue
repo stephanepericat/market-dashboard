@@ -40,7 +40,7 @@ export default {
     },
 
     quotes() {
-      return this.$store.state.quotes;
+      return this.$store.getters.getWatchlistData;
     }
   },
 
@@ -54,7 +54,7 @@ export default {
 
   methods: {
     setQuoteData(data) {
-      this.$store.dispatch("transformQuoteData", data);
+      this.$store.commit("setQuoteData", data);
     },
 
     handleCellClick(cell) {

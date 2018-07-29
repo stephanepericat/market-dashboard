@@ -14,7 +14,7 @@
         </gl-col>
         <gl-col>
           <gl-row>
-            <gl-component title="Price Chart">
+            <gl-component :title="'Stock Price: ' + this.focus">
               <price-chart
                 ref="priceChart"
                 :focus="focus"
@@ -23,12 +23,12 @@
           </gl-row>
           <gl-row>
             <gl-col>
-              <gl-component title="Company Info">
+              <gl-component :title="'Company Info: ' + this.focus">
                 COMPONENT 3
               </gl-component>
             </gl-col>
             <gl-col>
-              <gl-component title="Related News">
+              <gl-component :title="'Related News: ' + this.focus">
                 COMPONENT 4
               </gl-component>
             </gl-col>

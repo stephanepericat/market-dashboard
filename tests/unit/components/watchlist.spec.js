@@ -26,7 +26,7 @@ describe("Components > Watchlist > Presentational", () => {
 });
 
 describe("Components > Watchlist > methods > setQuoteData", () => {
-  it("should update the store", () => {
+  it("should commit quotes data to the store", () => {
     const callSpy = sinon.spy();
 
     const wrapper = shallowMount(Watchlist, {
@@ -38,7 +38,7 @@ describe("Components > Watchlist > methods > setQuoteData", () => {
       }
     });
 
-    wrapper.vm.$store.dispatch = callSpy;
+    wrapper.vm.$store.commit = callSpy;
 
     const data = {};
 
@@ -47,7 +47,7 @@ describe("Components > Watchlist > methods > setQuoteData", () => {
     expect(callSpy.calledOnce).toBeTruthy();
 
     const [args] = callSpy.args;
-    expect(args[0]).toEqual("transformQuoteData");
+    expect(args[0]).toEqual("setQuoteData");
     expect(args[1]).toEqual(data);
   });
 });
