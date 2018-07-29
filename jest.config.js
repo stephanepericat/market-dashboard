@@ -14,5 +14,25 @@ module.exports = {
   testMatch: [
     "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
   ],
-  setupFiles: ["<rootDir>/tests/utils/global.js"]
+  setupFiles: ["<rootDir>/tests/utils/global.js"],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/node_modules",
+    "<rootDir>/tests/fixtures",
+    "<rootDir>/tests/utils",
+    "<rootDir>/.vscode",
+    "<rootDir>/dist_electron",
+    "<rootDir>/coverage",
+    "<rootDir>/public",
+    "<rootDir>/src/config",
+    "<rootDir>/src/locales",
+    "<rootDir>/src/store_modules/state.js"
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 40,
+      functions: 60,
+      lines: 75,
+      statements: 75
+    }
+  }
 };
