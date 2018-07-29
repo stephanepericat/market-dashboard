@@ -13,6 +13,8 @@ import BaseLineChart from "@/components/base-line-chart";
 import ChartService from "@/services/chart";
 
 export default {
+  name: "PriceChartComponent",
+
   components: {
     BaseLineChart
   },

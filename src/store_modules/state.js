@@ -2,8 +2,11 @@ import defaultList from "@/config/default-list";
 
 export default {
   list: defaultList,
-  quotes: null,
+  focus: defaultList[0],
+
   historicalData: [],
   intradayData: [],
-  focus: defaultList[0]
+  quotes: null,
+  stats: null,
+  news: null
 };

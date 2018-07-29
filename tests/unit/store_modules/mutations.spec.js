@@ -38,3 +38,15 @@ describe("Store > Mutations > setHistoricalData", () => {
     expect(state.historicalData).toEqual(data);
   });
 });
+
+describe("Store > Mutations > setStatsData", () => {
+  it("should update the stats data", () => {
+    const state = mockState();
+    const data = {};
+
+    expect(state.stats).toBeNull();
+
+    mutations.setStatsData(state, data);
+    expect(state.stats).toEqual(data);
+  });
+});

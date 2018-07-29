@@ -22,16 +22,23 @@
             </gl-component>
           </gl-row>
           <gl-row>
-            <gl-col>
-              <gl-component :title="'Company Info: ' + this.focus">
-                COMPONENT 3
+            <gl-stack>
+              <gl-component :title="'Quote: ' + this.focus">
+                <quote
+                  ref="quote"
+                  :focus="focus"
+                ></quote>
               </gl-component>
-            </gl-col>
-            <gl-col>
-              <gl-component :title="'Related News: ' + this.focus">
+              <gl-component :title="'Company Info: ' + this.focus">
                 COMPONENT 4
               </gl-component>
-            </gl-col>
+              <gl-component :title="'Related News: ' + this.focus">
+                COMPONENT 5
+              </gl-component>
+              <gl-component :title="'Intraday Chart: ' + this.focus">
+                COMPONENT 6
+              </gl-component>
+            </gl-stack>
           </gl-row>
         </gl-col>
       </gl-row>
@@ -40,15 +47,17 @@
 </template>
 
 <script>
-import watchlist from "@/components/watchlist";
+import quote from "@/components/quote";
 import priceChart from "@/components/price-chart";
+import watchlist from "@/components/watchlist";
 
 export default {
   name: "HomeView",
 
   components: {
-    watchlist,
-    priceChart
+    quote,
+    priceChart,
+    watchlist
   },
 
   computed: {

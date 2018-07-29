@@ -20,7 +20,7 @@ import "ag-grid/dist/styles/ag-grid.css";
 import "ag-grid/dist/styles/ag-theme-balham-dark.css";
 
 export default {
-  name: "BaseGrid",
+  name: "BaseGridComponent",
 
   props: {
     columnSet: {

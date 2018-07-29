@@ -17,6 +17,8 @@ import QuoteService from "@/services/quote";
 import columnSet from "@/config/watchlist-columns";
 
 export default {
+  name: "WatchlistComponent",
+
   components: {
     BaseGrid
   },

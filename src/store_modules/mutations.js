@@ -9,5 +9,9 @@ export default {
 
   setHistoricalData(state, payload) {
     state.historicalData = payload;
+  },
+
+  setStatsData(state, payload) {
+    state.stats = payload;
   }
 };
