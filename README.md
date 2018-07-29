@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/stephanepericat/market-dashboard.svg?branch=master)](https://travis-ci.org/stephanepericat/market-dashboard)
 
+[![Coverage Status](https://coveralls.io/repos/github/stephanepericat/market-dashboard/badge.svg?branch=coverage)](https://coveralls.io/github/stephanepericat/market-dashboard?branch=coverage)
+
 # Market Dashboard
 
 A demo market monitoring terminal built with Vue.js and Electron.
