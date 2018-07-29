@@ -7,6 +7,14 @@ import rawHistoricalData from "../../fixtures/historical-data-aapl";
 import "jasmine-expect";
 
 describe("Store > Getters > getWatchlistData", () => {
+  it("should return an empty array if there is no data", () => {
+    const state = mockState();
+    state.quotes = null;
+
+    const formatted = getters.getWatchlistData(state);
+    expect(formatted).toBeEmptyArray();
+  });
+
   it("should transform raw quote data", () => {
     const state = mockState();
     state.quotes = rawQuoteData;
@@ -17,6 +25,14 @@ describe("Store > Getters > getWatchlistData", () => {
 });
 
 describe("Store > Getters > getChartData", () => {
+  it("should return an empty array is there is no data", () => {
+    const state = mockState();
+    state.historicalData = [];
+
+    const formatted = getters.getChartData(state);
+    expect(formatted).toBeEmptyArray();
+  });
+
   it("should transform raw historical data", () => {
     const state = mockState();
     state.historicalData = rawHistoricalData;
