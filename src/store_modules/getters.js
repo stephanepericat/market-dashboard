@@ -19,5 +19,15 @@ export default {
       const timestamp = Date.parse(new Date(dataPoint.date));
       return [timestamp, dataPoint.close];
     });
+  },
+
+  getQuoteData(state) {
+    const stats = state.stats || {};
+    const rtData =
+      state.quotes && state.quotes[state.focus]
+        ? state.quotes[state.focus].quote
+        : {};
+
+    return _.assign({}, stats, rtData);
   }
 };

@@ -2,6 +2,7 @@ import getters from "@/store_modules/getters";
 
 import mockState from "../../utils/mock-state";
 import rawQuoteData from "../../fixtures/quote-data";
+import rawStatsData from "../../fixtures/stats-data";
 import rawHistoricalData from "../../fixtures/historical-data-aapl";
 
 import "jasmine-expect";
@@ -44,5 +45,26 @@ describe("Store > Getters > getChartData", () => {
 
     expect(formatted).toBeArrayOfSize(20);
     expect(formatted[0]).toBeArrayOfNumbers();
+  });
+});
+
+describe("Store > Getters > getQuoteData", () => {
+  it("should merge quote and stats data", () => {
+    const state = mockState();
+    state.quotes = rawQuoteData;
+    state.stats = rawStatsData;
+
+    const formatted = getters.getQuoteData(state);
+    expect(formatted).toBeObject();
+    expect(formatted.symbol).toEqual("AAPL");
+  });
+
+  it("should return an empty object if there is no data", () => {
+    const state = mockState();
+    state.quotes = null;
+    state.stats = null;
+
+    const formatted = getters.getQuoteData(state);
+    expect(formatted).toBeEmptyObject();
   });
 });

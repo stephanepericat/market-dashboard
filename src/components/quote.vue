@@ -22,7 +22,7 @@ export default {
 
   computed: {
     viewData() {
-      return {};
+      return this.$store.getters.getQuoteData;
     }
   },
 
