@@ -2,9 +2,26 @@
   <div class="quote-container">
     <div class="header">
       <div class="as-of-info" v-text="asOfInfo"></div>
-      <h2 class="company-name" v-text="headerData.name"></h2>
-      <h1 class="last-price" v-text="headerData.latestPrice"></h1>
-      <p class="change-info" v-bind:class="changeType" v-text="changeInfo"></p>
+      <h2 class="company-name">
+        <span class="full-name" v-text="headerData.name"></span>
+        <span
+          class="ticker"
+          v-text="'(' + headerData.ticker + ')'">
+        </span>
+      </h2>
+      <h1 class="last-price">
+        <span
+          class=" change-icon fas"
+          v-if="changeType !== 'zero'"
+          v-bind:class="[arrowClass, changeType]">
+        </span>
+        <span v-text="headerData.latestPrice"></span>
+      </h1>
+      <p
+        class="change-info"
+        v-bind:class="changeType"
+        v-text="changeInfo">
+      </p>
     </div>
     <div class="tiles"></div>
   </div>
@@ -53,6 +70,10 @@ export default {
 
     changeInfo() {
       return `${this.headerData.change} | ${this.headerData.changePercent}%`;
+    },
+
+    arrowClass() {
+      return `fa-arrow-${this.changeType}`;
     },
 
     asOfInfo() {
@@ -109,11 +130,25 @@ export default {
     .company-name {
       font-weight: 600;
       font-size: 18px;
+
+      .full-name {
+        margin-right: 5px;
+      }
+
+      .ticker {
+        font-weight: 300;
+        font-size: 12px;
+      }
     }
 
     .last-price {
       font-weight: 700;
       font-size: 32px;
+
+      .change-icon {
+        font-size: 24px;
+        margin-right: 5px;
+      }
     }
 
     .change-info {

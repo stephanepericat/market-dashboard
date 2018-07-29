@@ -11,6 +11,7 @@
     "serve:electron": "vue-cli-service serve:electron"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0",
     "ag-grid": "^18.1.2",
     "ag-grid-vue": "^18.1.0",
     "axios": "^0.18.0",
