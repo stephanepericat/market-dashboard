@@ -1,6 +1,6 @@
 <template>
   <div class="quote-container">
-    <div class="header">
+    <div class="header" v-if="headerData.name">
       <div class="as-of-info" v-text="asOfInfo"></div>
       <h2 class="company-name">
         <span class="full-name" v-text="headerData.name"></span>

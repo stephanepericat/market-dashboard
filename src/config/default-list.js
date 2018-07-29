@@ -7,7 +7,6 @@ export default [
   "FB",
   "JPM",
   "GOOG",
-  "GOOGL",
   "BRK.B",
   "XOM",
   "JNJ",
@@ -50,5 +49,6 @@ export default [
   "UNP",
   "TXN",
   "MO",
-  "ACN"
+  "ACN",
+  "NKE"
 ];
