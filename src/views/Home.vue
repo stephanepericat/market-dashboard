@@ -29,14 +29,8 @@
                   :focus="focus"
                 ></quote>
               </gl-component>
-              <gl-component :title="'Company Info: ' + this.focus">
-                COMPONENT 4
-              </gl-component>
               <gl-component :title="'Related News: ' + this.focus">
-                COMPONENT 5
-              </gl-component>
-              <gl-component :title="'Intraday Chart: ' + this.focus">
-                COMPONENT 6
+                NEWS COMPONENT
               </gl-component>
             </gl-stack>
           </gl-row>
