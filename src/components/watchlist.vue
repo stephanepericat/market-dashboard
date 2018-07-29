@@ -2,14 +2,15 @@
   <div class="watchlist-container">
     <base-grid
       ref="grid"
-      :column-set="columns"
-      :view-data="quotes"
+      :columnSet="columns"
+      :viewData="quotes"
+      :onCellClicked="handleCellClick"
     ></base-grid>  
   </div>  
 </template>
 
 <script>
-import BaseGrid from "@/components/grid";
+import BaseGrid from "@/components/base-grid";
 import QuoteService from "@/services/quote";
 
 // config
@@ -22,6 +23,13 @@ export default {
 
   mixins: [QuoteService],
 
+  props: {
+    focus: {
+      type: String,
+      required: true
+    }
+  },
+
   computed: {
     columns() {
       return columnSet;
@@ -32,7 +40,7 @@ export default {
     },
 
     quotes() {
-      return this.$store.state.quotes;
+      return this.$store.getters.getWatchlistData;
     }
   },
 
@@ -40,11 +48,23 @@ export default {
     this.getQuotes(this.list)
       .then(res => this.setQuoteData(res.data))
       .catch(e => console.error(e));
+
+    // TODO: add data poll
   },
 
   methods: {
     setQuoteData(data) {
-      this.$store.dispatch("transformQuoteData", data);
+      this.$store.commit("setQuoteData", data);
+    },
+
+    handleCellClick(cell) {
+      if (!cell.column || cell.column.colId !== "companyName") {
+        return;
+      }
+
+      if (cell.data && cell.data.symbol) {
+        this.$store.commit("setFocusedInvestment", cell.data.symbol);
+      }
     }
   }
 };

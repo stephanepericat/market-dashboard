@@ -1,4 +1,4 @@
-import Grid from "@/components/grid";
+import Grid from "@/components/base-grid";
 import { shallowMount } from "@vue/test-utils";
 
 describe("Components > Grid > Presentational", () => {

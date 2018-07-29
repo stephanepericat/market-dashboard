@@ -5,6 +5,9 @@
       class="grid ag-theme-balham-dark"
       :columnDefs="columnSet"
       :rowData="viewData"
+      :enableSorting="true"
+      :modelUpdated="onModelUpdated"
+      :cellClicked="onCellClicked"
       ></ag-grid-vue>
   </div>
 </template>
@@ -27,6 +30,18 @@ export default {
 
     viewData: {
       required: false
+    },
+
+    onModelUpdated: {
+      type: Function,
+      required: false,
+      default: () => {}
+    },
+
+    onCellClicked: {
+      type: Function,
+      required: false,
+      default: () => {}
     }
   },
 
