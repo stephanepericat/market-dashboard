@@ -12,6 +12,9 @@ describe("Components > Watchlist > Presentational", () => {
     const wrapper = shallowMount(Watchlist, {
       mocks: {
         $store: mockStore()
+      },
+      propsData: {
+        focus: "AAPL"
       }
     });
 
@@ -29,6 +32,9 @@ describe("Components > Watchlist > methods > setQuoteData", () => {
     const wrapper = shallowMount(Watchlist, {
       mocks: {
         $store: mockStore()
+      },
+      propsData: {
+        focus: "AAPL"
       }
     });
 
@@ -53,6 +59,9 @@ describe("Components > Watchlist > methods > handleCellClick", () => {
     const wrapper = shallowMount(Watchlist, {
       mocks: {
         $store: mockStore()
+      },
+      propsData: {
+        focus: "AAPL"
       }
     });
 
@@ -73,6 +82,9 @@ describe("Components > Watchlist > methods > handleCellClick", () => {
     const wrapper = shallowMount(Watchlist, {
       mocks: {
         $store: mockStore()
+      },
+      propsData: {
+        focus: "AAPL"
       }
     });
 

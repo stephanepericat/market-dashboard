@@ -23,6 +23,13 @@ export default {
 
   mixins: [QuoteService],
 
+  props: {
+    focus: {
+      type: String,
+      required: true
+    }
+  },
+
   computed: {
     columns() {
       return columnSet;
