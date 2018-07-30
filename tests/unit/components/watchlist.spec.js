@@ -25,6 +25,35 @@ describe("Components > Watchlist > Presentational", () => {
   });
 });
 
+describe("Components > Watchlist > methods > getQuoteData", () => {
+  it("should get quotes data and commit it to the store", () => {
+    const callStub = sinon.stub().resolves({});
+    const callbackSpy = sinon.spy();
+
+    const wrapper = shallowMount(Watchlist, {
+      mocks: {
+        $store: mockStore()
+      },
+      propsData: {
+        focus: "AAPL"
+      }
+    });
+
+    wrapper.vm.getQuotes = callStub;
+    wrapper.vm.setQuoteData = callbackSpy;
+
+    const list = ["aapl", "msft"];
+
+    return wrapper.vm.getQuoteData(list).then(() => {
+      expect(callStub.calledOnce).toBeTruthy();
+      expect(callbackSpy.calledOnce).toBeTruthy();
+
+      const [args] = callStub.args;
+      expect(args[0]).toEqual(list);
+    });
+  });
+});
+
 describe("Components > Watchlist > methods > setQuoteData", () => {
   it("should commit quotes data to the store", () => {
     const callSpy = sinon.spy();

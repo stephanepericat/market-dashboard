@@ -47,14 +47,27 @@ export default {
   },
 
   created() {
-    this.getQuotes(this.list)
-      .then(res => this.setQuoteData(res.data))
-      .catch(e => console.error(e));
+    this.getQuoteData(this.list);
 
-    // TODO: add data poll
+    this.$_dataPoll = setInterval(() => {
+      this.getQuoteData(this.list);
+    }, 1000);
+  },
+
+  beforeDestroy() {
+    if (this.$_dataPoll) {
+      clearInterval(this.$_dataPoll);
+      this.$_dataPoll = null;
+    }
   },
 
   methods: {
+    getQuoteData(list) {
+      return this.getQuotes(list)
+        .then(res => this.setQuoteData(res.data))
+        .catch(e => console.error(e));
+    },
+
     setQuoteData(data) {
       this.$store.commit("setQuoteData", data);
     },
