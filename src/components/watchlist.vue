@@ -6,7 +6,6 @@
       :viewData="quotes"
       :gridOptions="gridOptions"
       :onCellClicked="handleCellClick"
-      :onModelUpdated="handleDataChange"
     ></base-grid>  
   </div>  
 </template>
@@ -37,8 +36,14 @@ export default {
   data() {
     return {
       gridOptions: {
-        enableCellChangeFlash: true
-      }
+        enableCellChangeFlash: true,
+        deltaRowDataMode: true,
+        getRowNodeId: function(data) {
+          return data.symbol;
+        }
+      },
+
+      frequency: 1000
     };
   },
 
@@ -61,7 +66,7 @@ export default {
 
     this.$_dataPoll = setInterval(() => {
       this.getQuoteData(this.list);
-    }, 1000);
+    }, this.frequency);
   },
 
   beforeDestroy() {
@@ -90,11 +95,6 @@ export default {
       if (cell.data && cell.data.symbol) {
         this.$store.commit("setFocusedInvestment", cell.data.symbol);
       }
-    },
-
-    handleDataChange(e) {
-      console.log("CHANGE", e);
-      // e.api.flashCells();
     }
   }
 };
