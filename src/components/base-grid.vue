@@ -9,6 +9,7 @@
       :modelUpdated="onModelUpdated"
       :rowDataUpdated="onRowUpdated"
       :cellClicked="onCellClicked"
+      :cellFocused="onCellFocused"
       :gridOptions="gridOptions"
       ></ag-grid-vue>
   </div>
@@ -55,6 +56,12 @@ export default {
     },
 
     onCellClicked: {
+      type: Function,
+      required: false,
+      default: () => {}
+    },
+
+    onCellFocused: {
       type: Function,
       required: false,
       default: () => {}

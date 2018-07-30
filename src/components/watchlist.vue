@@ -6,6 +6,7 @@
       :viewData="quotes"
       :gridOptions="gridOptions"
       :onCellClicked="handleCellClick"
+      :onCellFocused="handleCellFocus"
     ></base-grid>  
   </div>  
 </template>
@@ -87,13 +88,29 @@ export default {
       this.$store.commit("setQuoteData", data);
     },
 
+    setFocus(ticker) {
+      this.$store.commit("setFocusedInvestment", ticker);
+    },
+
     handleCellClick(cell) {
       if (!cell.column || cell.column.colId !== "companyName") {
         return;
       }
 
       if (cell.data && cell.data.symbol) {
-        this.$store.commit("setFocusedInvestment", cell.data.symbol);
+        this.setFocus(cell.data.symbol);
+      }
+    },
+
+    handleCellFocus(cell) {
+      if (!cell.column || cell.column.colId !== "companyName") {
+        return;
+      }
+
+      const row = cell.api.getDisplayedRowAtIndex(cell.rowIndex);
+
+      if (row.data && row.data.symbol) {
+        this.setFocus(row.data.symbol);
       }
     }
   }
