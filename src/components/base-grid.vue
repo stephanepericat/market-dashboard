@@ -8,6 +8,7 @@
       :enableSorting="true"
       :modelUpdated="onModelUpdated"
       :cellClicked="onCellClicked"
+      :gridOptions="gridOptions"
       ></ag-grid-vue>
   </div>
 </template>
@@ -30,6 +31,16 @@ export default {
 
     viewData: {
       required: false
+    },
+
+    gridOptions: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {
+          enableCellChangeFlash: true
+        };
+      }
     },
 
     onModelUpdated: {

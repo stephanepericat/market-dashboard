@@ -4,7 +4,9 @@
       ref="grid"
       :columnSet="columns"
       :viewData="quotes"
+      :gridOptions="gridOptions"
       :onCellClicked="handleCellClick"
+      :onModelUpdated="handleDataChange"
     ></base-grid>  
   </div>  
 </template>
@@ -30,6 +32,14 @@ export default {
       type: String,
       required: true
     }
+  },
+
+  data() {
+    return {
+      gridOptions: {
+        enableCellChangeFlash: true
+      }
+    };
   },
 
   computed: {
@@ -80,6 +90,11 @@ export default {
       if (cell.data && cell.data.symbol) {
         this.$store.commit("setFocusedInvestment", cell.data.symbol);
       }
+    },
+
+    handleDataChange(e) {
+      console.log("CHANGE", e);
+      // e.api.flashCells();
     }
   }
 };
