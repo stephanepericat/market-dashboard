@@ -23,8 +23,14 @@ export default {
 
   watch: {
     chartData(data) {
-      if (data && data.length && !this.lineChart) {
+      if (!data) {
+        return;
+      }
+
+      if (!this.lineChart) {
         this.initChart();
+      } else {
+        this.updateChart();
       }
     }
   },
@@ -39,9 +45,20 @@ export default {
         rangeSelector: {
           selected: 1
         },
-        // title: {
-        //   text: `Stock Price for ${this.focus}`
-        // },
+        series: [
+          {
+            name: this.focus,
+            data: this.chartData,
+            tooltip: {
+              valueDecimals: 2
+            }
+          }
+        ]
+      });
+    },
+
+    updateChart() {
+      this.lineChart.update({
         series: [
           {
             name: this.focus,
