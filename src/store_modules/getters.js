@@ -29,5 +29,23 @@ export default {
         : {};
 
     return _.assign({}, stats, rtData);
+  },
+
+  getGlmaData(state) {
+    if (state.glma.length < 3) {
+      return {
+        gainers: [],
+        losers: [],
+        mostActives: []
+      };
+    }
+
+    const [gainers, losers, mostActives] = state.glma;
+
+    return {
+      gainers: gainers.data,
+      losers: losers.data,
+      mostActives: mostActives.data
+    };
   }
 };

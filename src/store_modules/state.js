@@ -6,6 +6,7 @@ export default {
 
   historicalData: [],
   intradayData: [],
+  glma: [],
   quotes: null,
   stats: null,
   news: null

@@ -18,8 +18,16 @@
                   :viewType="'gainers'"
                 ></glma>
               </gl-component>
-              <gl-component title="Losers">LOSERS</gl-component>
-              <gl-component title="Most Active">MOST ACTIVE</gl-component>
+              <gl-component title="Losers">
+                <glma
+                  :viewType="'losers'"
+                ></glma>
+              </gl-component>
+              <gl-component title="Most Active">
+                <glma
+                  :viewType="'mostActives'"
+                ></glma>
+              </gl-component>
             </gl-stack>
           </gl-row>
         </gl-col>

@@ -50,3 +50,15 @@ describe("Store > Mutations > setStatsData", () => {
     expect(state.stats).toEqual(data);
   });
 });
+
+describe("Store > Mutations > setGlmaData", () => {
+  it("should update the glma data", () => {
+    const state = mockState();
+    const data = [{ data: [] }, { data: [] }, { data: [] }];
+
+    expect(state.glma).toBeEmptyArray();
+
+    mutations.setGlmaData(state, data);
+    expect(state.glma).toEqual(data);
+  });
+});

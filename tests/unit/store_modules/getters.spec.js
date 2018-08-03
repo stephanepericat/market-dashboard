@@ -4,6 +4,7 @@ import mockState from "../../utils/mock-state";
 import rawQuoteData from "../../fixtures/quote-data";
 import rawStatsData from "../../fixtures/stats-data";
 import rawHistoricalData from "../../fixtures/historical-data-aapl";
+import rawGlmaData from "../../fixtures/glma-data";
 
 import "jasmine-expect";
 
@@ -66,5 +67,28 @@ describe("Store > Getters > getQuoteData", () => {
 
     const formatted = getters.getQuoteData(state);
     expect(formatted).toBeEmptyObject();
+  });
+});
+
+describe("Store > Getters > getGlmaData", () => {
+  it("should return empty rows if there is no data", () => {
+    const state = mockState();
+
+    const formatted = getters.getGlmaData(state);
+    expect(formatted).toBeObject();
+    expect(formatted.gainers).toBeEmptyArray();
+    expect(formatted.losers).toBeEmptyArray();
+    expect(formatted.mostActives).toBeEmptyArray();
+  });
+
+  it("should return list data", () => {
+    const state = mockState();
+    state.glma = rawGlmaData;
+
+    const formatted = getters.getGlmaData(state);
+    expect(formatted).toBeObject();
+    expect(formatted.gainers).toBeArrayOfSize(10);
+    expect(formatted.losers).toBeArrayOfSize(10);
+    expect(formatted.mostActives).toBeArrayOfSize(10);
   });
 });
