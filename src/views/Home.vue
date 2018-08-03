@@ -11,6 +11,17 @@
               ></watchlist>
             </gl-component>
           </gl-row>
+          <gl-row>
+            <gl-stack>
+              <gl-component title="Gainers">
+                <glma
+                  :viewType="'gainers'"
+                ></glma>
+              </gl-component>
+              <gl-component title="Losers">LOSERS</gl-component>
+              <gl-component title="Most Active">MOST ACTIVE</gl-component>
+            </gl-stack>
+          </gl-row>
         </gl-col>
         <gl-col>
           <gl-row>
@@ -44,11 +55,13 @@
 import quote from "@/components/quote";
 import priceChart from "@/components/price-chart";
 import watchlist from "@/components/watchlist";
+import glma from "@/components/glma";
 
 export default {
   name: "HomeView",
 
   components: {
+    glma,
     quote,
     priceChart,
     watchlist
