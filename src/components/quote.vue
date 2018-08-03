@@ -1,6 +1,6 @@
 <template>
   <div class="quote-container">
-    <div class="header" v-if="headerData.name">
+    <div class="header" v-if="!busy">
       <div class="as-of-info" v-text="asOfInfo"></div>
       <h2 class="company-name">
         <span class="full-name" v-text="headerData.name"></span>
@@ -23,7 +23,7 @@
         v-text="changeInfo">
       </p>
     </div>
-    <div class="tiles" v-if="headerData.name">
+    <div class="tiles" v-if="!busy">
       <div class="box" v-for="dp in bodyData" :key="dp.key">
         <p class="label" v-text="dp.label"></p>
         <p class="value" v-text="dp.value"></p>
@@ -54,6 +54,12 @@ export default {
     }
   },
 
+  data() {
+    return {
+      busy: true
+    };
+  },
+
   computed: {
     viewData() {
       return this.$store.getters.getQuoteData || {};
@@ -77,7 +83,7 @@ export default {
         return {
           key: dp,
           label: this.labels[dp],
-          value: this.viewData[dp]
+          value: this.viewData[dp] || "\u2014"
         };
       });
     },
@@ -109,6 +115,14 @@ export default {
     }
   },
 
+  watch: {
+    focus(ticker) {
+      if (ticker) {
+        this.reloadData(ticker);
+      }
+    }
+  },
+
   created() {
     this.getStatsData(this.focus);
   },
@@ -118,12 +132,19 @@ export default {
       return this.getStats(ticker)
         .then(res => {
           this.setStatsData(res.data);
+          this.busy = false;
         })
         .catch(e => console.error(e));
     },
 
     setStatsData(rawData) {
       this.$store.commit("setStatsData", rawData);
+    },
+
+    reloadData(ticker) {
+      this.busy = true;
+      this.setStatsData({});
+      return this.getStatsData(ticker);
     }
   }
 };

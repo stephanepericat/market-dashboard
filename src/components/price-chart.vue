@@ -1,6 +1,7 @@
 <template>
   <div class="price-chart-container">
     <base-line-chart
+      v-show="!busy"
       ref="lineChart"
       :chartData="viewData"
       :focus="focus">
@@ -21,6 +22,12 @@ export default {
 
   mixins: [ChartService],
 
+  data() {
+    return {
+      busy: true
+    };
+  },
+
   props: {
     focus: {
       type: String,
@@ -34,19 +41,39 @@ export default {
     }
   },
 
+  watch: {
+    focus(ticker) {
+      if (ticker) {
+        this.reloadData(ticker);
+      }
+    }
+  },
+
   created() {
-    this.getHistoricalData(this.focus)
-      .then(res => {
-        if (res && res.data) {
-          this.setHistoricalData(res.data);
-        }
-      })
-      .catch(e => console.error(e));
+    this.getChartData(this.focus);
   },
 
   methods: {
+    getChartData(ticker) {
+      return this.getHistoricalData(ticker)
+        .then(res => {
+          if (res && res.data) {
+            this.setHistoricalData(res.data);
+          }
+
+          this.busy = false;
+        })
+        .catch(e => console.error(e));
+    },
+
     setHistoricalData(rawData) {
       this.$store.commit("setHistoricalData", rawData);
+    },
+
+    reloadData(ticker) {
+      this.busy = true;
+      this.setHistoricalData([]);
+      return this.getChartData(ticker);
     }
   }
 };

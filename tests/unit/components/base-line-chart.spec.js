@@ -47,3 +47,25 @@ describe("Components > Base Line Chart > methods > initChart", () => {
     expect(args[1]).toBeObject();
   });
 });
+
+describe("Components > Base Line Chart > methods > updateChart", () => {
+  it("should update the data on an existing chart", () => {
+    const updateSpy = sinon.spy();
+    const wrapper = shallowMount(BaseLineChart, {
+      mocks: {
+        $store: mockStore()
+      },
+      propsData: {
+        focus: "AAPL"
+      }
+    });
+
+    wrapper.vm.lineChart = {
+      update: updateSpy
+    };
+
+    wrapper.vm.updateChart();
+
+    expect(updateSpy.called).toBeTruthy();
+  });
+});
