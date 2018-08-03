@@ -100,7 +100,7 @@ export default {
     },
 
     labels() {
-      return this.$i18n.messages[this.locale];
+      return this.$i18n.messages[this.locale].quote;
     }
   },
 
