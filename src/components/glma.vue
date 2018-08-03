@@ -1,5 +1,5 @@
 <template>
-  <div class="glma-container">
+  <div class="glma-container" v-bind:class="viewType">
     <base-grid
       ref="grid"
       :columnSet="columns"
@@ -52,7 +52,9 @@ export default {
     },
 
     stats() {
-      return this.$store.getters.getGlmaData[this.viewType] || [];
+      return this.$store.getters.getGlmaData
+        ? this.$store.getters.getGlmaData[this.viewType]
+        : [];
     }
   },
 
