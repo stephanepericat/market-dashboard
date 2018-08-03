@@ -23,7 +23,12 @@
         v-text="changeInfo">
       </p>
     </div>
-    <div class="tiles"></div>
+    <div class="tiles" v-if="headerData.name">
+      <div class="box" v-for="dp in bodyData" :key="dp.key">
+        <p class="label" v-text="dp.label"></p>
+        <p class="value" v-text="dp.value"></p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -186,6 +191,29 @@ export default {
 
       &.up {
         color: green;
+      }
+    }
+  }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(4, calc(25% - 10px));
+    grid-gap: 10px;
+
+    height: calc(55%);
+    overflow-y: scroll;
+
+    .box {
+      padding: 10px;
+      border-bottom: 1px solid #555;
+
+      .label {
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .value {
+        font-size: 12px;
       }
     }
   }
