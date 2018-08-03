@@ -13,5 +13,9 @@ export default {
 
   setStatsData(state, payload) {
     state.stats = payload;
+  },
+
+  setGlmaData(state, payload) {
+    state.glma = payload;
   }
 };
