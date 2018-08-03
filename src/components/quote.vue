@@ -29,6 +29,7 @@
 
 <script>
 import QuoteService from "@/services/quote";
+import DataPointsList from "@/config/quote-datapoints-list";
 
 export default {
   name: "QuoteComponent",
@@ -39,6 +40,12 @@ export default {
     focus: {
       type: String,
       required: true
+    },
+
+    locale: {
+      type: String,
+      required: false,
+      default: "en"
     }
   },
 
@@ -58,6 +65,16 @@ export default {
         change: this.viewData.change,
         changePercent: this.viewData.changePercent
       };
+    },
+
+    bodyData() {
+      return DataPointsList.map(dp => {
+        return {
+          key: dp,
+          label: this.labels[dp],
+          value: this.viewData[dp]
+        };
+      });
     },
 
     changeType() {
@@ -80,11 +97,19 @@ export default {
       return `${this.headerData.market} | ${this.headerData.sector} | As Of ${
         this.headerData.latestUpdate
       }`;
+    },
+
+    labels() {
+      return this.$i18n.messages[this.locale];
     }
   },
 
   created() {
     this.getStatsData(this.focus);
+  },
+
+  mounted() {
+    console.log();
   },
 
   methods: {
