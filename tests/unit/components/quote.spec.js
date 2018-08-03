@@ -2,6 +2,7 @@ import Quote from "@/components/quote";
 import { shallowMount } from "@vue/test-utils";
 
 import mockStore from "../../utils/mock-store";
+import mockI18n from "../../utils/mock-i18n";
 import statsData from "../../fixtures/stats-data";
 
 import sinon from "sinon";
@@ -11,7 +12,8 @@ describe("Components > Quote > presentational", () => {
   it("should render a quote component", () => {
     const wrapper = shallowMount(Quote, {
       mocks: {
-        $store: mockStore()
+        $store: mockStore(),
+        $i18n: mockI18n()
       },
       propsData: {
         focus: "AAPL"
@@ -25,12 +27,13 @@ describe("Components > Quote > presentational", () => {
 
 describe("Components > Quote > methods > getStatsData", () => {
   it("should retrieve and store stats data", () => {
-    const callStub = sinon.stub().resolves({ data: [] });
+    const callStub = sinon.stub().resolves(statsData);
     const callSpy = sinon.spy();
 
     const wrapper = shallowMount(Quote, {
       mocks: {
-        $store: mockStore()
+        $store: mockStore(),
+        $i18n: mockI18n()
       },
       propsData: {
         focus: "AAPL"
@@ -57,7 +60,8 @@ describe("Components > Quote > methods > setStatsData", () => {
 
     const wrapper = shallowMount(Quote, {
       mocks: {
-        $store: mockStore()
+        $store: mockStore(),
+        $i18n: mockI18n()
       },
       propsData: {
         focus: "AAPL"
@@ -73,5 +77,35 @@ describe("Components > Quote > methods > setStatsData", () => {
     const [args] = callSpy.args;
     expect(args[0]).toEqual("setStatsData");
     expect(args[1]).toEqual(statsData);
+  });
+});
+
+describe("Components > Quote > methods > reloadData", () => {
+  it("should get data for the new focus", () => {
+    const setDataSpy = sinon.spy();
+    const getDataStub = sinon.stub().resolves(statsData);
+
+    const wrapper = shallowMount(Quote, {
+      mocks: {
+        $store: mockStore(),
+        $i18n: mockI18n()
+      },
+      propsData: {
+        focus: "AAPL"
+      }
+    });
+
+    const newFocus = "MSFT";
+
+    wrapper.vm.setStatsData = setDataSpy;
+    wrapper.vm.getStats = getDataStub;
+
+    return wrapper.vm.reloadData(newFocus).then(() => {
+      expect(setDataSpy.calledTwice).toBeTruthy();
+      expect(getDataStub.calledOnce).toBeTruthy();
+
+      const [args] = getDataStub.args;
+      expect(args[0]).toEqual(newFocus);
+    });
   });
 });

@@ -144,7 +144,7 @@ export default {
     reloadData(ticker) {
       this.busy = true;
       this.setStatsData({});
-      this.getStatsData(ticker);
+      return this.getStatsData(ticker);
     }
   }
 };
