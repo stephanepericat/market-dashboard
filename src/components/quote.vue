@@ -113,10 +113,6 @@ export default {
     this.getStatsData(this.focus);
   },
 
-  mounted() {
-    console.log();
-  },
-
   methods: {
     getStatsData(ticker) {
       return this.getStats(ticker)
