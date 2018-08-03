@@ -6,7 +6,7 @@
 /* globals Highcharts */
 
 export default {
-  name: "BaseLineChart",
+  name: "BaseLineChartComponent",
 
   props: {
     chartData: {

@@ -4,7 +4,9 @@
       ref="grid"
       :columnSet="columns"
       :viewData="quotes"
+      :gridOptions="gridOptions"
       :onCellClicked="handleCellClick"
+      :onCellFocused="handleCellFocus"
     ></base-grid>  
   </div>  
 </template>
@@ -17,6 +19,8 @@ import QuoteService from "@/services/quote";
 import columnSet from "@/config/watchlist-columns";
 
 export default {
+  name: "WatchlistComponent",
+
   components: {
     BaseGrid
   },
@@ -28,6 +32,20 @@ export default {
       type: String,
       required: true
     }
+  },
+
+  data() {
+    return {
+      gridOptions: {
+        enableCellChangeFlash: true,
+        deltaRowDataMode: true,
+        getRowNodeId: function(data) {
+          return data.symbol;
+        }
+      },
+
+      frequency: 1000
+    };
   },
 
   computed: {
@@ -45,16 +63,33 @@ export default {
   },
 
   created() {
-    this.getQuotes(this.list)
-      .then(res => this.setQuoteData(res.data))
-      .catch(e => console.error(e));
+    this.getQuoteData(this.list);
 
-    // TODO: add data poll
+    this.$_dataPoll = setInterval(() => {
+      this.getQuoteData(this.list);
+    }, this.frequency);
+  },
+
+  beforeDestroy() {
+    if (this.$_dataPoll) {
+      clearInterval(this.$_dataPoll);
+      this.$_dataPoll = null;
+    }
   },
 
   methods: {
+    getQuoteData(list) {
+      return this.getQuotes(list)
+        .then(res => this.setQuoteData(res.data))
+        .catch(e => console.error(e));
+    },
+
     setQuoteData(data) {
       this.$store.commit("setQuoteData", data);
+    },
+
+    setFocus(ticker) {
+      this.$store.commit("setFocusedInvestment", ticker);
     },
 
     handleCellClick(cell) {
@@ -63,7 +98,19 @@ export default {
       }
 
       if (cell.data && cell.data.symbol) {
-        this.$store.commit("setFocusedInvestment", cell.data.symbol);
+        this.setFocus(cell.data.symbol);
+      }
+    },
+
+    handleCellFocus(cell) {
+      if (!cell.column || cell.column.colId !== "companyName") {
+        return;
+      }
+
+      const row = cell.api.getDisplayedRowAtIndex(cell.rowIndex);
+
+      if (row.data && row.data.symbol) {
+        this.setFocus(row.data.symbol);
       }
     }
   }

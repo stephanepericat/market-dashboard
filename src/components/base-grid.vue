@@ -7,7 +7,10 @@
       :rowData="viewData"
       :enableSorting="true"
       :modelUpdated="onModelUpdated"
+      :rowDataUpdated="onRowUpdated"
       :cellClicked="onCellClicked"
+      :cellFocused="onCellFocused"
+      :gridOptions="gridOptions"
       ></ag-grid-vue>
   </div>
 </template>
@@ -20,7 +23,7 @@ import "ag-grid/dist/styles/ag-grid.css";
 import "ag-grid/dist/styles/ag-theme-balham-dark.css";
 
 export default {
-  name: "BaseGrid",
+  name: "BaseGridComponent",
 
   props: {
     columnSet: {
@@ -32,13 +35,33 @@ export default {
       required: false
     },
 
+    gridOptions: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {};
+      }
+    },
+
     onModelUpdated: {
       type: Function,
       required: false,
       default: () => {}
     },
 
+    onRowUpdated: {
+      type: Function,
+      required: false,
+      default: () => {}
+    },
+
     onCellClicked: {
+      type: Function,
+      required: false,
+      default: () => {}
+    },
+
+    onCellFocused: {
       type: Function,
       required: false,
       default: () => {}

@@ -12,6 +12,11 @@ export default {
       const symbols = tickers.join(",");
       const URL = `/stock/market/batch?symbols=${symbols}&types=quote`;
       return this.getData(URL);
+    },
+
+    getStats(ticker) {
+      const URL = `/stock/${ticker}/stats`;
+      return this.getData(URL);
     }
   }
 };

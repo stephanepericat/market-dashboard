@@ -50,3 +50,26 @@ describe("Services > Quote > getQuotes", () => {
     });
   });
 });
+
+describe("Services > Quote > getStats", () => {
+  it("should get stats for a given ticker", () => {
+    const ajaxStub = sinon.stub().resolves({});
+    const wrapper = shallowMount({
+      mixins: [QuoteService],
+      template: "<div></div>"
+    });
+
+    wrapper.vm.$_ajax = {
+      get: ajaxStub
+    };
+
+    const ticker = "aapl";
+
+    return wrapper.vm.getStats(ticker).then(() => {
+      expect(ajaxStub.calledOnce).toBeTruthy();
+
+      const [args] = ajaxStub.args;
+      expect(args[0]).toEqual(`/stock/${ticker}/stats`);
+    });
+  });
+});
