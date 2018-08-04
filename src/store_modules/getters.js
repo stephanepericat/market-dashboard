@@ -47,5 +47,21 @@ export default {
       losers: losers.data,
       mostActives: mostActives.data
     };
+  },
+
+  getNewsData(state) {
+    if (state.news.length < 2) {
+      return {
+        stock: [],
+        market: []
+      };
+    }
+
+    const [stock, market] = state.news;
+
+    return {
+      stock: stock.data,
+      market: market.data
+    };
   }
 };

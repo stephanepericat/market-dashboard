@@ -17,5 +17,9 @@ export default {
 
   setGlmaData(state, payload) {
     state.glma = payload;
+  },
+
+  setNewsData(state, payload) {
+    state.news = payload;
   }
 };

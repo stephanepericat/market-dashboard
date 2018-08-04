@@ -89,7 +89,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .glma-container {
   background-color: #2d3436;
   height: 100%;
