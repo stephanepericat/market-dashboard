@@ -3,7 +3,7 @@
     <div class="stock-news">
       <h2 v-text="focus + ' ' + labels.news"></h2>
       <div class="news-tiles" v-if="viewData.stock.length">
-        <div class="box" v-for="(stockNews, index) in viewData.stock" :key="index">
+        <div class="box" v-for="(stockNews, index) in viewData.stock" :key="index" @click="openArticle(stockNews.url)">
           <h3 class="article-title" v-text="stockNews.headline"></h3>
           <p class="article-date" v-text="stockNews.datetime"></p>
           <p class="article-summary" v-text="stockNews.summary"></p>
@@ -14,7 +14,7 @@
     <div class="market-news">
       <h2 v-text="labels.market + ' ' + labels.news"></h2>
       <div class="news-tiles" v-if="viewData.market.length">
-        <div class="box" v-for="(marketNews, index) in viewData.market" :key="index">
+        <div class="box" v-for="(marketNews, index) in viewData.market" :key="index" @click="openArticle(marketkNews.url)">
           <h3 class="article-title" v-text="marketNews.headline"></h3>
           <p class="article-date" v-text="marketNews.datetime"></p>
           <p class="article-summary" v-text="marketNews.summary"></p>
@@ -93,6 +93,22 @@ export default {
       this.getNewsData(ticker).then(res => {
         this.setNewsData(res);
       });
+    },
+
+    openArticle(url) {
+      if (!url) {
+        return;
+      }
+
+      if (window && window.process && window.process.type) {
+        this.openExternal(url);
+      } else {
+        window.open(url);
+      }
+    },
+
+    openExternal(url) {
+      require("electron").shell.openExternal(url);
     }
   }
 };
@@ -119,6 +135,10 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, calc(50% - 10px));
     grid-gap: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     .box {
       border-bottom: 1px solid #555;
