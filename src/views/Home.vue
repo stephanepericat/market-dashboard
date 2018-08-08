@@ -49,7 +49,10 @@
                 ></quote>
               </gl-component>
               <gl-component :title="'Related News: ' + this.focus">
-                NEWS COMPONENT
+                <news
+                  ref="news"
+                  :focus="focus"
+                ></news>
               </gl-component>
             </gl-stack>
           </gl-row>
@@ -64,14 +67,16 @@ import quote from "@/components/quote";
 import priceChart from "@/components/price-chart";
 import watchlist from "@/components/watchlist";
 import glma from "@/components/glma";
+import news from "@/components/news";
 
 export default {
   name: "HomeView",
 
   components: {
     glma,
-    quote,
+    news,
     priceChart,
+    quote,
     watchlist
   },
 

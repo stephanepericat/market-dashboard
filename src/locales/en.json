@@ -88,5 +88,12 @@
     "week52High": "52 Week High",
     "week52Low": "52 Week Low",
     "ytdChange": "YTD Change"
+  },
+  "news": {
+    "noMarketNews": "No market news at the moment",
+    "noNewsAbout": "No news about",
+    "atTheMoment": "at the moment",
+    "news": "News",
+    "market": "Market"
   }
 }

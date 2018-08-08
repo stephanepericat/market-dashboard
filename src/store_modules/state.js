@@ -9,5 +9,5 @@ export default {
   glma: [],
   quotes: null,
   stats: null,
-  news: null
+  news: []
 };
