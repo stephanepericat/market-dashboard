@@ -62,3 +62,15 @@ describe("Store > Mutations > setGlmaData", () => {
     expect(state.glma).toEqual(data);
   });
 });
+
+describe("Store > Mutations > setNewsData", () => {
+  it("should update the news data", () => {
+    const state = mockState();
+    const data = [{ data: [] }, { data: [] }, { data: [] }];
+
+    expect(state.news).toBeEmptyArray();
+
+    mutations.setNewsData(state, data);
+    expect(state.news).toEqual(data);
+  });
+});
