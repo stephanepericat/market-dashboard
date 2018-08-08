@@ -2,7 +2,7 @@
   <div class="news-container">
     <div class="stock-news">
       <h2 v-text="focus + ' ' + labels.news"></h2>
-      <div class="news-tiles" v-if="viewData.stock.length">
+      <div class="news-tiles" v-if="viewData.stock && viewData.stock.length">
         <div class="box" v-for="(stockNews, index) in viewData.stock" :key="index" @click="openArticle(stockNews.url)">
           <h3 class="article-title" v-text="stockNews.headline"></h3>
           <p class="article-date" v-text="stockNews.datetime"></p>
@@ -13,7 +13,7 @@
     </div>
     <div class="market-news">
       <h2 v-text="labels.market + ' ' + labels.news"></h2>
-      <div class="news-tiles" v-if="viewData.market.length">
+      <div class="news-tiles" v-if="viewData.market && viewData.market.length">
         <div class="box" v-for="(marketNews, index) in viewData.market" :key="index" @click="openArticle(marketkNews.url)">
           <h3 class="article-title" v-text="marketNews.headline"></h3>
           <p class="article-date" v-text="marketNews.datetime"></p>
@@ -90,7 +90,7 @@ export default {
     },
 
     reloadStockNews(ticker) {
-      this.getNewsData(ticker).then(res => {
+      return this.getNewsData(ticker).then(res => {
         this.setNewsData(res);
       });
     },
