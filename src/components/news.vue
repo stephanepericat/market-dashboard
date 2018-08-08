@@ -77,9 +77,7 @@ export default {
   },
 
   created() {
-    this.getNewsData(this.focus).then(res => {
-      this.setNewsData(res);
-    });
+    this.reloadStockNews(this.focus);
   },
 
   methods: {
@@ -92,8 +90,9 @@ export default {
     },
 
     reloadStockNews(ticker) {
-      // TODO !!
-      return ticker;
+      this.getNewsData(ticker).then(res => {
+        this.setNewsData(res);
+      });
     }
   }
 };
