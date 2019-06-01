@@ -2,9 +2,12 @@ import axios from "axios";
 
 export default {
   created() {
-    this.$_baseURL = "https://api.iextrading.com/1.0";
+    this.$_baseURL = "https://cloud.iexapis.com/stable";
     this.$_ajax = axios.create({
-      baseURL: this.$_baseURL
+      baseURL: this.$_baseURL,
+      params: {
+        token: process.env.VUE_APP_IEX_TOKEN
+      }
     });
   },
 
