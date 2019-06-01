@@ -6,14 +6,25 @@
 
 A demo market monitoring terminal built with Vue.js and Electron.
 
-## Run the App Locally
+## Clone
 
 ```shell
 git clone https://github.com/stephanepericat/market-dashboard.git
+```
 
+## Setup
+
+ - Install the node.js dependencies
+```shell
 cd market-dashboard/
-
 yarn
+```
+ - Create a file called `.env.local` at the root of the project
+ - add your api token, as such: `VUE_APP_IEX_TOKEN=pk_463464364634646`
+
+## Run the App Locally
+
+```shell
 yarn serve:electron
 ```
 
@@ -31,4 +42,4 @@ yarn build:electron
 
 ## Legal
 
-Data provided for free by [IEX](https://iextrading.com/developer). View [IEX’s Terms of Use](https://iextrading.com/api-exhibit-a/).
+[Data provided by IEX Cloud](https://iexcloud.io).
