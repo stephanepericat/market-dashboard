@@ -1,32 +1,23 @@
 <template>
   <div class="home">
-    <layout-golden class="workbook" :show-popout-icon="false">
+    <golden-layout class="workbook" :show-popout-icon="false">
       <gl-row>
         <gl-col>
           <gl-row>
             <gl-component title="S&P 500 Top 50">
-              <watchlist
-                ref="watchlist"
-                :focus="focus"
-              ></watchlist>
+              <watchlist ref="watchlist" :focus="focus"></watchlist>
             </gl-component>
           </gl-row>
           <gl-row>
             <gl-stack>
               <gl-component title="Gainers">
-                <glma
-                  :viewType="'gainers'"
-                ></glma>
+                <glma :viewType="'gainers'"></glma>
               </gl-component>
               <gl-component title="Losers">
-                <glma
-                  :viewType="'losers'"
-                ></glma>
+                <glma :viewType="'losers'"></glma>
               </gl-component>
               <gl-component title="Most Active">
-                <glma
-                  :viewType="'mostActives'"
-                ></glma>
+                <glma :viewType="'mostActives'"></glma>
               </gl-component>
             </gl-stack>
           </gl-row>
@@ -34,31 +25,22 @@
         <gl-col>
           <gl-row>
             <gl-component :title="'Stock Price: ' + this.focus">
-              <price-chart
-                ref="priceChart"
-                :focus="focus"
-              ></price-chart>
+              <price-chart ref="priceChart" :focus="focus"></price-chart>
             </gl-component>
           </gl-row>
           <gl-row>
             <gl-stack>
               <gl-component :title="'Quote: ' + this.focus">
-                <quote
-                  ref="quote"
-                  :focus="focus"
-                ></quote>
+                <quote ref="quote" :focus="focus"></quote>
               </gl-component>
               <gl-component :title="'Related News: ' + this.focus">
-                <news
-                  ref="news"
-                  :focus="focus"
-                ></news>
+                <news ref="news" :focus="focus"></news>
               </gl-component>
             </gl-stack>
           </gl-row>
         </gl-col>
       </gl-row>
-		</layout-golden>
+    </golden-layout>
   </div>
 </template>
 

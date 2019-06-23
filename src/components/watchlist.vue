@@ -7,8 +7,8 @@
       :gridOptions="gridOptions"
       :onCellClicked="handleCellClick"
       :onCellFocused="handleCellFocus"
-    ></base-grid>  
-  </div>  
+    ></base-grid>
+  </div>
 </template>
 
 <script>

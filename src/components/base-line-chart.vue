@@ -74,7 +74,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss">
 .line-chart-container {
   height: 100%;
