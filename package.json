@@ -65,5 +65,8 @@
       "git add"
     ]
   },
-  "main": "dist_electron/bundled/background.js"
+  "main": "dist_electron/bundled/background.js",
+  "engine": {
+    "node": "^8.16.0"
+  }
 }
