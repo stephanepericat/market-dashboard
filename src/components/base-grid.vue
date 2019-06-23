@@ -1,5 +1,5 @@
 <template>
-	<div class="grid-container">
+  <div class="grid-container">
     <ag-grid-vue
       ref="ag"
       class="grid ag-theme-balham-dark"
@@ -11,10 +11,9 @@
       :cellClicked="onCellClicked"
       :cellFocused="onCellFocused"
       :gridOptions="gridOptions"
-      ></ag-grid-vue>
+    ></ag-grid-vue>
   </div>
 </template>
-
 
 <script>
 import { AgGridVue } from "ag-grid-vue";

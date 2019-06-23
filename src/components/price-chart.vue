@@ -4,7 +4,8 @@
       v-show="!busy"
       ref="lineChart"
       :chartData="viewData"
-      :focus="focus">
+      :focus="focus"
+    >
     </base-line-chart>
   </div>
 </template>

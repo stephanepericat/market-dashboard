@@ -4,24 +4,18 @@
       <div class="as-of-info" v-text="asOfInfo"></div>
       <h2 class="company-name">
         <span class="full-name" v-text="headerData.name"></span>
-        <span
-          class="ticker"
-          v-text="'(' + headerData.ticker + ')'">
-        </span>
+        <span class="ticker" v-text="'(' + headerData.ticker + ')'"> </span>
       </h2>
       <h1 class="last-price">
         <span
           class=" change-icon fas"
           v-if="changeType !== 'zero'"
-          v-bind:class="[arrowClass, changeType]">
+          v-bind:class="[arrowClass, changeType]"
+        >
         </span>
         <span v-text="headerData.latestPrice"></span>
       </h1>
-      <p
-        class="change-info"
-        v-bind:class="changeType"
-        v-text="changeInfo">
-      </p>
+      <p class="change-info" v-bind:class="changeType" v-text="changeInfo"></p>
     </div>
     <div class="tiles" v-if="!busy">
       <div class="box" v-for="dp in bodyData" :key="dp.key">
@@ -105,9 +99,7 @@ export default {
     },
 
     asOfInfo() {
-      return `${this.headerData.market} | ${this.headerData.sector} | As Of ${
-        this.headerData.latestUpdate
-      }`;
+      return `${this.headerData.market} | ${this.headerData.sector} | As Of ${this.headerData.latestUpdate}`;
     },
 
     labels() {

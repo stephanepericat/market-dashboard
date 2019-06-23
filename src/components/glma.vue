@@ -5,7 +5,7 @@
       :columnSet="columns"
       :viewData="stats"
       :gridOptions="gridOptions"
-    ></base-grid> 
+    ></base-grid>
   </div>
 </template>
 
